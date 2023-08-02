@@ -3,6 +3,7 @@ import './Shop.css';
 import Product from '../Product/Product.jsx';
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
     useEffect(() => {
 
         // const url = `https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json`
@@ -10,6 +11,11 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
+    const handlerAddToCart = (product) =>{
+        const newCart = [...cart, product];
+        setCart(newCart);
+        // console.log(product)
+      }
     return (
         <div>
             <div className="shop-container">
@@ -18,11 +24,13 @@ const Shop = () => {
                         products.map(product => <Product
                             key={product.id}
                             product = {product}
+                            handlerAddToCart={handlerAddToCart}
                         ></Product>)
                     }
                 </div>
                 <div className="card-container">
                     <h4>Order Summary</h4>
+                    <p>Selected items: {cart.length}</p>
                 </div>
             </div>
 
