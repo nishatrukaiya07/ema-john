@@ -9,7 +9,7 @@ const Shop = () => {
     useEffect(() => {
 
         // const url = `https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json`
-        fetch('/public/products.json')
+        fetch('products.json')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
